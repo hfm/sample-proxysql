@@ -8,6 +8,7 @@ services:
       - 6080:6080 # proxysql web interface
     volumes:
       - ./proxysql.cnf:/etc/proxysql.cnf
+      - ./log/:/var/log/proxysql/
     depends_on:
       - mysql
   mysql:

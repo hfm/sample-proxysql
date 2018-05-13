@@ -16,7 +16,7 @@ mysql_variables=
 	monitor_password="monitor"
 	commands_stats=true
 	sessions_sort=true
-	mysql-eventslog_filename="queries.log"
+	eventslog_filename="/var/log/proxysql/queries.log"
 }
 
 mysql_servers =
