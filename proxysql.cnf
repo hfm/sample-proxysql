@@ -4,7 +4,7 @@ datadir="/var/lib/proxysql"
 
 admin_variables=
 {
-	admin_credentials="admin:admin"
+	admin_credentials="admin:admin;radmin:radmin"
 	mysql_ifaces="0.0.0.0:6032;/tmp/proxysql_admin.sock"
 	web_enabled=true
 }
