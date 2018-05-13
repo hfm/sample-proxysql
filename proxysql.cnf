@@ -1,0 +1,44 @@
+#file proxysql.cfg
+
+datadir="/var/lib/proxysql"
+
+admin_variables=
+{
+	admin_credentials="admin:admin"
+	mysql_ifaces="0.0.0.0:6032;/tmp/proxysql_admin.sock"
+}
+
+mysql_variables=
+{
+	interfaces="0.0.0.0:6033;/tmp/proxysql.sock"
+	monitor_username="monitor"
+	monitor_password="monitor"
+	commands_stats=true
+	sessions_sort=true
+	mysql-eventslog_filename="queries.log"
+}
+
+mysql_servers =
+(
+	{
+		address = "mysql" # no default, required . If port is 0 , address is interpred as a Unix Socket Domain
+		port = 3306           # no default, required . If port is 0 , address is interpred as a Unix Socket Domain
+		hostgroup = 0	      # no default, required
+	}
+)
+
+mysql_users:
+(
+	{ username = "root" }
+)
+
+mysql_query_rules:
+(
+	{
+		rule_id=1
+		active=1
+		match_pattern="."
+		log=1
+		apply=0
+	}
+)
