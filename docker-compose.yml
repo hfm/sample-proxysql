@@ -3,8 +3,9 @@ services:
   proxysql:
     build: .
     ports:
-      - 6032:6032
-      - 6033:6033
+      - 6032:6032 # proxysql admin interface
+      - 6033:6033 # mysql interface
+      - 6080:6080 # proxysql web interface
     volumes:
       - ./proxysql.cnf:/etc/proxysql.cnf
     depends_on:
