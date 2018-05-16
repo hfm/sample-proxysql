@@ -32,6 +32,12 @@ mysql> SHOW DATABASES;
 5 rows in set (0.00 sec)
 ```
 
+## Query Logging
+
+`./log/queries.log.XXXXXXXX`
+
+See details: https://github.com/sysown/proxysql/wiki/Query-Logging
+
 ## Connect to admin remotely
 
 - ProxySQL admin port: 6032
