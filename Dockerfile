@@ -6,7 +6,7 @@ RUN apt-get -qq update \
       && echo deb http://repo.proxysql.com/ProxySQL/proxysql-1.4.x/$(lsb_release -sc)/ ./ | tee /etc/apt/sources.list.d/proxysql.list \
       && apt-get -qq update && apt-get install -qq -y --no-install-recommends proxysql=1.4.8 \
       && mkdir /var/log/proxysql \
-      && rm /var/lib/apt/lists/*
+      && rm -r /var/lib/apt/lists/*
 
 COPY proxysql.cnf /etc/proxysql.cnf
 CMD ["proxysql", "-f"]
