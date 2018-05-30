@@ -1,5 +1,7 @@
 # ProxySQL sandbox
 
+Run `docker-compose up --scale proxysql=3`
+
 ## Access MySQL through ProxySQL
 
 1. Run `docker-compose up`
@@ -48,7 +50,7 @@ See details: https://github.com/sysown/proxysql/wiki/Global-variables#admin-admi
 
 ## See ProxySQL statistics on Web UI
 
-1. Run `docker-compose up`
+1. Run docker-compose
 1. Access to http://0.0.0.0:6080 .
 1. Input `stats:stats` into BASIC auth to login.
 
