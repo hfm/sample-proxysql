@@ -7,8 +7,8 @@ admin_variables=
 	admin_credentials="admin:admin;radmin:radmin"
 	mysql_ifaces="0.0.0.0:6032;/tmp/proxysql_admin.sock"
 	web_enabled=true
-	cluster_username='cluster'
-	cluster_password='secretcluster'
+	cluster_username="cluster"
+	cluster_password="secretcluster"
 }
 
 mysql_variables=
