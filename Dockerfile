@@ -16,5 +16,6 @@ RUN apt-get -qq update \
       && mkdir /var/log/proxysql \
       && rm -r /var/lib/apt/lists/*
 
+COPY mylogin.cnf /root/.mylogin.cnf
 COPY proxysql.cnf /etc/proxysql.cnf
 CMD ["proxysql", "-f"]
