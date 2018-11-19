@@ -1,6 +1,8 @@
 # ProxySQL sandbox
 
-Run `docker-compose up --scale proxysql=3`
+Run `docker-compose up`
+
+If you try [ProxySQL Cluster](https://github.com/sysown/proxysql/wiki/ProxySQL-Cluster), run `docker-compose -f docker-compose.cluster.yml up --scale proxysql=3`
 
 ## Access MySQL through ProxySQL
 
