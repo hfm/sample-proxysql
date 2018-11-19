@@ -4,18 +4,12 @@ datadir="/var/lib/proxysql"
 
 admin_variables=
 {
-	admin_credentials="admin:admin;radmin:radmin;cluster:secretcluster"
-	mysql_ifaces="0.0.0.0:6032;/tmp/proxysql_admin.sock"
+	admin_credentials="radmin:radmin;cluster:secretcluster"
+	mysql_ifaces="0.0.0.0:6032"
 	web_enabled=true
 
 	cluster_username="cluster"
 	cluster_password="secretcluster"
-	cluster_check_interval_ms=200
-	cluster_check_status_frequency=100
-	cluster_mysql_query_rules_save_to_disk=true
-	cluster_mysql_servers_save_to_disk=true
-	cluster_mysql_users_save_to_disk=true
-	cluster_proxysql_servers_save_to_disk=true
 }
 
 proxysql_servers =
@@ -39,7 +33,7 @@ proxysql_servers =
 
 mysql_variables=
 {
-	interfaces="0.0.0.0:6033;/tmp/proxysql.sock"
+	interfaces="0.0.0.0:6033"
 	monitor_username="monitor"
 	monitor_password="monitor"
 	commands_stats=true

@@ -11,7 +11,7 @@ admin_variables=
 
 mysql_variables=
 {
-	interfaces="0.0.0.0:6033;/var/run/proxysql/proxysql.sock"
+	interfaces="0.0.0.0:6033"
 	monitor_username="monitor"
 	monitor_password="monitor"
 	commands_stats=true
