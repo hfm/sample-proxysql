@@ -14,6 +14,8 @@ services:
   mysql:
     image: mysql:5.7
     restart: always
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/custom.cnf
     environment:
       MYSQL_DATABASE: backend
       MYSQL_USER: monitor
