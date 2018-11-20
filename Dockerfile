@@ -1,7 +1,7 @@
 FROM debian:9-slim
 
 RUN apt-get -qq update \
-      && apt-get install -qq -y --no-install-recommends lsb-release wget gnupg procps gdb \
+      && apt-get install -qq -y --no-install-recommends lsb-release wget gnupg procps \
       && wget -qO- 'http://repo.mysql.com/RPM-GPG-KEY-mysql' | apt-key add - \
       && echo 'deb http://repo.mysql.com/apt/debian/ stretch mysql-5.7' > /etc/apt/sources.list.d/mysql.list \
       &&{ \

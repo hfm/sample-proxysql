@@ -1,0 +1,26 @@
+version: '3'
+services:
+  proxysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    privileged: true
+    ports:
+      - 6032:6032 # proxysql admin interface
+      - 6033:6033 # mysql interface
+      - 6080:6080 # proxysql web interface
+    volumes:
+      - ./proxysql.cnf:/etc/proxysql.cnf
+      - ./log/:/var/log/proxysql/
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/custom.cnf
+    environment:
+      MYSQL_DATABASE: backend
+      MYSQL_USER: monitor
+      MYSQL_PASSWORD: monitor
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
