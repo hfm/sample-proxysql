@@ -1,4 +1,4 @@
-FROM debian:9
+FROM debian:9-slim
 
 RUN apt-get -qq update \
       && apt-get install -qq -y --no-install-recommends lsb-release wget gnupg procps gdb \
