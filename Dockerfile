@@ -18,4 +18,7 @@ RUN apt-get -qq update \
 
 COPY mylogin.cnf /root/.mylogin.cnf
 COPY proxysql.cnf /etc/proxysql.cnf
+
+EXPOSE 6032 6033 6080
+
 CMD ["proxysql", "-c", "/etc/proxysql.cnf", "-f"]
