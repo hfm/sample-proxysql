@@ -1,6 +1,13 @@
 ProxySQL であそぼう
 =
 
+まずはイメージを用意します。以下のコマンドを打ってください。
+
+```sh
+docker-compose build
+docker-compose pull
+```
+
 ProxySQL 単体を起動してみる
 -
 
