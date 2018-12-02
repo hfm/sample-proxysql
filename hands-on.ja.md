@@ -80,6 +80,11 @@ ProxySQL の活用
 +--------+     +----------+     +--------+
 ```
 
+```sql
+SAVE MYSQL USERS TO DISK;
+LOAD MYSQL USERS TO RUNTIME;
+```
+
 ProxySQL 統計情報を見ながら MySQL クラスタ管理を知る
 -
 
@@ -93,6 +98,19 @@ ProxySQL 統計情報を見ながら MySQL クラスタ管理を知る
                  |              +----------+
                  +------------> | read db  |
                                 +----------+
+```
+
+```sql
+SET GLOBAL read_only=1;
+
+SAVE MYSQL SERVERS TO DISK;
+LOAD MYSQL SERVERS TO RUNTIME;
+
+SELECT * FROM runtime_mysql_servers;
+SELECT * FROM stats_mysql_connection_pool;
+
+SAVE MYSQL QUERY RULES TO DISK;
+LOAD MYSQL QUERY RULES TO RUNTIME;
 ```
 
 フェイルオーバサポート
@@ -114,6 +132,11 @@ ProxySQL 統計情報を見ながら MySQL クラスタ管理を知る
                                 +----------+
 ```
 
+```sql
+SET GLOBAL read_only=0;
+SELECT * FROM runtime_mysql_servers;
+```
+
 Extra: ProxySQL Cluster
 -
 
@@ -131,4 +154,9 @@ Extra: ProxySQL Cluster
             |   +----------+          |
             +-> | proxysql | ---------+
                 +----------+
+```
+
+```sql
+SAVE PROXYSQL SERVERS TO DISK;
+LOAD PROXYSQL SERVERS TO RUNTIME;
 ```
