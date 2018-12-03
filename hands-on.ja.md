@@ -61,6 +61,8 @@ mysql> ^DBye
 ProxySQL 越しに MySQL へアクセスする
 -
 
+docker-compose を使って proxysql 越しに mysql へアクセスしてみましょう。今回のハンズオンでは、ホストから 0.0.0.0:6033 にアクセスすると proxysql 経由で mysql にアクセスできます。
+
 ### このセクションにおける構成図
 
 ```
@@ -70,7 +72,12 @@ ProxySQL 越しに MySQL へアクセスする
 ```
 
 ```sh
-docker-compose up
+docker-compose up -d
+
+mysql -P6033 -h0.0.0.0 -uroot --default-character-set=utf8 --default-auth=mysql_native_password
+
+# homebrew などで MySQL 8.0系が入っている場合は以下のコマンドを使う
+mysql -P6033 -h0.0.0.0 -uroot --default-character-set=utf8 --default-auth=mysql_native_password
 ```
 
 ProxySQL の活用
