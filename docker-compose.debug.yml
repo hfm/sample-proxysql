@@ -12,6 +12,7 @@ services:
     volumes:
       - ./proxysql.cnf:/etc/proxysql.cnf
       - ./log/:/var/log/proxysql/
+      - ./log.dat:/root/log.dat:ro
     depends_on:
       - mysql
   mysql:

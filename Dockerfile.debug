@@ -1,12 +1,13 @@
-FROM debian:9-slim
+FROM debian:8-slim
 
 RUN apt-get -qq update \
-      && apt-get install -qq -y lsb-release wget procps gdb \
-      && wget -qOproxysql-dbg.deb https://github.com/sysown/proxysql/releases/download/v1.4.12/proxysql_1.4.12-dbg-debian9_amd64.deb \
+      && apt-get install -qq -y lsb-release wget procps gdb iputils-ping \
+      && wget -qOproxysql-dbg.deb https://github.com/sysown/proxysql/releases/download/v1.4.12/proxysql_1.4.12-dbg-debian8_amd64.deb \
       && dpkg -i proxysql-dbg.deb \
       && mkdir /var/log/proxysql \
       && rm -r /var/lib/apt/lists/* proxysql-dbg.deb
 
 COPY mylogin.cnf /root/.mylogin.cnf
 COPY proxysql.cnf /etc/proxysql.cnf
-CMD ["proxysql", "-f"]
+WORKDIR /root/
+CMD ["bash", "-c", "ping 127.0.0.1"]
