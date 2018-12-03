@@ -69,6 +69,10 @@ ProxySQL 越しに MySQL へアクセスする
 +--------+     +----------+     +--------+
 ```
 
+```sh
+docker-compose up
+```
+
 ProxySQL の活用
 -
 
