@@ -19,6 +19,8 @@ ProxySQL 単体を起動してみる
 +----------+
 ```
 
+まずは docker コンテナで proxysql を起動します。6032 は ProxySQL Admin インターフェイス, 6033 は MySQL 用のインターフェイス, 6080 は Webインターフェイス用です。
+
 ```sh
 docker run --name proxysql --rm -p 6032:6032 -p 6033:6033 -p 6080:6080 sample-proxysql_proxysql
 ```
@@ -37,7 +39,7 @@ $ mysql -uradmin -pradmin -h0.0.0.0 -P6032 --default-auth=mysql_native_password
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
-Server version: 5.5.30 (ProxySQL Admin Module)
+Server version: 5.5.30 (ProxySQL Admin Module) ⭐⭐⭐
 
 Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 
@@ -54,14 +56,17 @@ mysql> SELECT version();
 | 1.4.13-15-g69d4207 |
 +--------------------+
 1 row in set (0.01 sec)
+```
 
-mysql> ^DBye
+ほかにも以下のようなコマンドを叩いてみると ProxySQL の情報を閲覧できます。
+
+```sql
+SELECT * FROM runtime_mysql_users;
+SELECT * FROM runtime_mysql_servers;
 ```
 
 ProxySQL 越しに MySQL へアクセスする
 -
-
-docker-compose を使って proxysql 越しに mysql へアクセスしてみましょう。今回のハンズオンでは、ホストから 0.0.0.0:6033 にアクセスすると proxysql 経由で mysql にアクセスできます。
 
 ### このセクションにおける構成図
 
@@ -70,6 +75,8 @@ docker-compose を使って proxysql 越しに mysql へアクセスしてみま
 | client | --> | proxysql | --> | mysqld |
 +--------+     +----------+     +--------+
 ```
+
+docker-compose を使って proxysql 越しに mysql へアクセスしてみましょう。今回のハンズオンでは、ホストから 0.0.0.0:6033 にアクセスすると proxysql 経由で mysql にアクセスできます。
 
 ```sh
 docker-compose up -d
@@ -80,52 +87,21 @@ mysql -P6033 -h0.0.0.0 -uroot --default-character-set=utf8 --default-auth=mysql_
 mysql -P6033 -h0.0.0.0 -uroot --default-character-set=utf8 --default-auth=mysql_native_password
 ```
 
-ProxySQL の活用
--
+適当に SQL を叩いたあと、いったん mysql からログアウトしてください。
 
-### このセクションにおける構成図
-
-```
-+--------+     +----------+     +--------+
-| client | --> | proxysql | --> | mysqld |
-+--------+     +----------+     +--------+
-```
+次に `mysql -uradmin -pradmin -h0.0.0.0 -P6032` などで ProxySQL admin interface にアクセスし、次のコマンドを叩いてみましょう。
 
 ```sql
-SAVE MYSQL USERS TO DISK;
-LOAD MYSQL USERS TO RUNTIME;
-```
-
-ProxySQL 統計情報を見ながら MySQL クラスタ管理を知る
--
-
-### このセクションにおける構成図
-
-```
-+--------+     +----------+     +----------+
-| client | --> | proxysql | --> | write db |
-+--------+     +----------+     +----------+
-                 |                  | replication
-                 |              +----------+
-                 +------------> | read db  |
-                                +----------+
-```
-
-```sql
-SET GLOBAL read_only=1;
-
-SAVE MYSQL SERVERS TO DISK;
-LOAD MYSQL SERVERS TO RUNTIME;
-
+SELECT * FROM runtime_mysql_users;
 SELECT * FROM runtime_mysql_servers;
-SELECT * FROM stats_mysql_connection_pool;
 
-SAVE MYSQL QUERY RULES TO DISK;
-LOAD MYSQL QUERY RULES TO RUNTIME;
+SELECT * FROM stats_mysql_connection_pool;
 ```
 
 フェイルオーバサポート
 -
+
+たぶん時間ない
 
 ### このセクションにおける構成図
 
@@ -150,6 +126,8 @@ SELECT * FROM runtime_mysql_servers;
 
 Extra: ProxySQL Cluster
 -
+
+たぶん時間ない
 
 ### このセクションにおける構成図
 
